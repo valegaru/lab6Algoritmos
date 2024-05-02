@@ -1,8 +1,7 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
-//const firebase = require('firebase/app');
-//const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
-//const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
+const firebase = require('firebase/app');
+import 'firebase/firestore';
+const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
+const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
 
 // Import the functions you need from the SDKs you need
 
@@ -20,8 +19,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+//const app = firebase.initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
+initializeApp();
 
-//const auth = getAuth(app);
+const db = getFirestore();
