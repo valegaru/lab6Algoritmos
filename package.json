@@ -3,7 +3,6 @@
 	"version": "1.0.0",
 	"description": "this is a base project",
 	"main": "index.js",
-	"type": "module",
 	"scripts": {
 		"start": "serve",
 		"build": "webpack --watch --mode=development"
