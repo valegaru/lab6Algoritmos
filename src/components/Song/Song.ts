@@ -1,3 +1,5 @@
+import styles from './Song.css';
+
 export enum AttributeSong {
 	'image' = 'image',
 	'utitle' = 'utitle',
@@ -7,7 +9,7 @@ export enum AttributeSong {
 	'duration' = 'duration',
 }
 
-export default class Song extends HTMLElement {
+export default class Songs extends HTMLElement {
 	image?: string;
 	utitle?: string;
 	autor?: string;
@@ -49,14 +51,17 @@ export default class Song extends HTMLElement {
   <image
    src='${this.image}'></image>
   <b></b><p>${this.utitle}</p>
-<p>${this.autor}</p>
+<p>Autor:${this.autor}</p>
 <p>Album:${this.album}</p>
 <p>Date added: ${this.date_added}</p>
 <p>duration:${this.duration}</p>
   </section>
 `;
 		}
+		const cssButton = this.ownerDocument.createElement('style');
+		cssButton.innerHTML = styles;
+		this.shadowRoot?.appendChild(cssButton);
 	}
 }
 
-customElements.define('my-song', Song);
+customElements.define('my-song', Songs);

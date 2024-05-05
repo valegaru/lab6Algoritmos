@@ -1,7 +1,8 @@
 import { Song } from './types/songs';
 import Firebase from './services/firebase';
 
-import './components/export';
+import { Songs } from './components/export';
+import { AttributeSong } from './components/Song/Song';
 
 const formData: Omit<Song, 'id'> = {
 	image: '',
@@ -92,32 +93,14 @@ class AppContainer extends HTMLElement {
 
 		const songs = await Firebase.getSongs();
 		songs.forEach((p: Song) => {
-			const container = this.ownerDocument.createElement('section');
-			const image = this.ownerDocument.createElement('img');
-			image.src = p.image;
-			container.appendChild(image);
-
-			const title = this.ownerDocument.createElement('h3');
-			title.innerText = p.title;
-			container.appendChild(title);
-
-			const autor = this.ownerDocument.createElement('h4');
-			autor.innerText = p.autor;
-			container.appendChild(autor);
-
-			const album = this.ownerDocument.createElement('p');
-			album.innerText = p.album;
-			container.appendChild(album);
-
-			const date = this.ownerDocument.createElement('p');
-			date.innerText = p.date_added;
-			container.appendChild(date);
-
-			const duration = this.ownerDocument.createElement('p');
-			duration.innerText = p.duration;
-			container.appendChild(duration);
-
-			this.shadowRoot?.appendChild(container);
+			const card = this.ownerDocument.createElement('my-song') as Songs;
+			card.setAttribute(AttributeSong.image, p.image);
+			card.setAttribute(AttributeSong.utitle, p.title);
+			card.setAttribute(AttributeSong.autor, p.autor);
+			card.setAttribute(AttributeSong.album, p.album);
+			card.setAttribute(AttributeSong.date_added, p.date_added);
+			card.setAttribute(AttributeSong.duration, p.duration);
+			this.shadowRoot?.appendChild(card);
 		});
 	}
 }
